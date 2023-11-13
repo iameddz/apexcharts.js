@@ -513,10 +513,8 @@ class Line {
     let stackSeries =
       w.config.chart.stacked &&
       (!this.w.config.chart.stackOnlyBar ||
-        (this.w.config.series[realIndex] &&
-          this.w.config.series[realIndex].type &&
-          (this.w.config.series[realIndex].type === 'bar' ||
-            this.w.config.series[realIndex].type === '')))
+        this.w.config.series[realIndex]?.type === 'bar' ||
+        this.w.config.series[realIndex]?.type === '')
 
     for (let j = 0; j < iterations; j++) {
       const isNull =
@@ -742,13 +740,13 @@ class Line {
       if (shouldRenderMonotone && smoothInputs.length > 1) {
         const points = spline.points(smoothInputs)
 
-        linePath += svgPath(points)
+        linePath += svgPath(points, w.globals.gridWidth)
         if (series[i][0] === null) {
           // if the first dataPoint is null, we use the linePath directly
           areaPath = linePath
         } else {
           // else, we append the areaPath
-          areaPath += svgPath(points)
+          areaPath += svgPath(points, w.globals.gridWidth)
         }
 
         if (type === 'rangeArea' && isRangeStart) {
@@ -766,7 +764,7 @@ class Line {
 
           const pointsY2 = spline.points(smoothInputsY2)
 
-          linePath += svgPath(pointsY2)
+          linePath += svgPath(pointsY2, w.globals.gridWidth)
 
           // in range area, we don't have separate line and area path
           areaPath = linePath

@@ -310,6 +310,7 @@ export default class Options {
         redrawOnWindowResize: true,
         id: undefined,
         group: undefined,
+        nonce: undefined,
         offsetX: 0,
         offsetY: 0,
         selection: {
@@ -345,6 +346,7 @@ export default class Options {
           targets: undefined,
         },
         stacked: false,
+        stackOnlyBar: true, // mixed chart with stacked bars and line series - incorrect line draw #907
         stackType: 'normal',
         stackOnlyBar: true, // mixed chart with stacked bars and line series - incorrect line draw #907
         toolbar: {
@@ -575,6 +577,18 @@ export default class Options {
                 )
               },
             },
+          },
+          barLabels: {
+            enabled: false,
+            margin: 5,
+            useSeriesColors: true,
+            fontFamily: undefined,
+            fontWeight: 600,
+            fontSize: '16px',
+            formatter(val) {
+              return val
+            },
+            onClick: undefined,
           },
         },
         pie: {
@@ -926,7 +940,7 @@ export default class Options {
         enabled: true,
         enabledOnSeries: undefined,
         shared: true,
-        hideEmptyShared: true,
+        hideEmptySeries: true,
         followCursor: false, // when disabled, the tooltip will show on top of the series instead of mouse position
         intersect: false, // when enabled, tooltip will only show when user directly hovers over point
         inverseOrder: false,
