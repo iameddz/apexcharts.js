@@ -348,7 +348,6 @@ export default class Options {
         stacked: false,
         stackOnlyBar: true, // mixed chart with stacked bars and line series - incorrect line draw #907
         stackType: 'normal',
-        stackOnlyBar: true, // mixed chart with stacked bars and line series - incorrect line draw #907
         toolbar: {
           show: true,
           offsetX: 0,
